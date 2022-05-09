@@ -1,0 +1,22 @@
+<cdk-virtual-scroll-viewport itemSize="50" class="list">
+  <div *cdkVirtualFor="let item of items; let index = index" class="item">
+    <div>
+      <div
+        type="button"
+        (click)="showMarkDownEditor($event)"
+        *ngIf="!isShowedList[index]; else isShowed"
+      >
+        {{ item }}
+      </div>
+      <ng-template #isShowed>
+        <quill-editor
+          *ngIf="showMarkDownEditor"
+          [styles]="{ height: '50px' }"
+        ></quill-editor>
+      </ng-template>
+    </div>
+    <div type="button" (click)="hideMarkDownEditor($event)">
+      {{ item }}
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>
